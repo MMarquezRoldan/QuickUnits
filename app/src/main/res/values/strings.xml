@@ -2,4 +2,12 @@
     <string name="app_name">QuickUnits</string>
     <string name="quick_units">QuickUnits</string>
     <string name="subtitle">What would you like to convert?</string>
+    <string name="introduce_number">Introduce your number</string>
+    <string name="into">into</string>
+    <string name="convert">CONVERT</string>
+
+    <string-array name="category">
+        <item>Mass</item>
+        <item>Length</item>
+    </string-array>
 </resources>
