@@ -50,28 +50,31 @@
             android:id="@+id/category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="30dp"
             android:layout_marginLeft="30dp"
-            android:entries="@array/category"/>
+            android:layout_marginRight="30dp"
+            android:entries="@array/category"
+            android:minHeight="48dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
             android:layout_marginTop="20dp"
+            android:layout_marginRight="50dp"
             android:layout_marginBottom="20dp"
-            android:inputType="numberDecimal"
             android:autofillHints="none"
             android:backgroundTint="@color/input_line_color"
-            android:hint="@string/introduce_number"/>
+            android:hint="@string/introduce_number"
+            android:inputType="numberDecimal"
+            android:minHeight="48dp" />
 
         <Spinner
             android:id="@+id/main_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"/>
+            android:minHeight="48dp" />
 
         <TextView
             android:layout_width="match_parent"
@@ -88,8 +91,9 @@
             android:id="@+id/into_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
-            android:layout_marginLeft="30dp"/>
+            android:minHeight="48dp" />
 
         <Button
             android:layout_width="wrap_content"
