@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">QuickUnits</string>
+    <string name="quick_units">QuickUnits</string>
+    <string name="subtitle">What would you like to convert?</string>
+</resources>
