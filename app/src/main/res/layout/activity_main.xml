@@ -56,6 +56,7 @@
             android:minHeight="48dp" />
 
         <EditText
+            android:id="@+id/to_convert"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="50dp"
@@ -74,6 +75,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
+            android:entries="@array/mass_units"
             android:minHeight="48dp" />
 
         <TextView
@@ -91,11 +93,13 @@
             android:id="@+id/into_unit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:entries="@array/mass_units"
             android:layout_marginLeft="30dp"
             android:layout_marginRight="30dp"
             android:minHeight="48dp" />
 
         <Button
+            android:id="@+id/convert"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/convert"
@@ -104,6 +108,7 @@
             android:backgroundTint="@color/button_bg"/>
 
         <TextView
+            android:id="@+id/result"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
