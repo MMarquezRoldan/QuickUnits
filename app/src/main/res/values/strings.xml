@@ -5,9 +5,24 @@
     <string name="introduce_number">Introduce your number</string>
     <string name="into">into</string>
     <string name="convert">CONVERT</string>
+    <string name="result">Result:</string>
 
     <string-array name="category">
         <item>Mass</item>
         <item>Length</item>
+    </string-array>
+    
+    <string-array name="mass_units">
+        <item>Kilogram</item>
+        <item>Gram</item>
+        <item>Pound</item>
+    </string-array>
+
+    <string-array name="length_units">
+        <item>Kilometer</item>
+        <item>Meter</item>
+        <item>Centimeter</item>
+        <item>Millimeter</item>
+        <item>Inch</item>
     </string-array>
 </resources>
