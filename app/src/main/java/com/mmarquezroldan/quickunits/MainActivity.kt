@@ -1,6 +1,5 @@
 package com.mmarquezroldan.quickunits
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import android.widget.*
@@ -45,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                     "Mass" -> R.array.mass_units
                     "Length" -> R.array.length_units
                     "Temperature" -> R.array.temperature_units
+                    "Speed" -> R.array.speed_units
                     else -> null
                 }
 
@@ -92,6 +92,9 @@ class MainActivity : AppCompatActivity() {
                 "Celsius" -> "°C"
                 "Fahrenheit" -> "°F"
                 "Kelvin" -> "K"
+                "Kilometer per hour" -> "km/h"
+                "Meter per second" -> "m/s"
+                "Mile per hour" -> "mph"
                 else -> ""
             }
 
@@ -107,6 +110,9 @@ class MainActivity : AppCompatActivity() {
                 "Celsius" -> "°C"
                 "Fahrenheit" -> "°F"
                 "Kelvin" -> "K"
+                "Kilometer per hour" -> "km/h"
+                "Meter per second" -> "m/s"
+                "Mile per hour" -> "mph"
                 else -> ""
             }
 
@@ -114,6 +120,7 @@ class MainActivity : AppCompatActivity() {
                 "Mass" -> calculateMass(value, fromUnit, toUnit)
                 "Length" -> calculateLength(value, fromUnit, toUnit)
                 "Temperature" -> calculateTemperature(value, fromUnit, toUnit)
+                "Speed" -> calculateSpeed(value, fromUnit, toUnit)
                 else -> 0.0
             }
 
@@ -169,6 +176,22 @@ class MainActivity : AppCompatActivity() {
             "Celsius" -> celsius
             "Fahrenheit" -> celsius * 9 / 5 + 32
             "Kelvin" -> celsius + 273.15
+            else -> 0.0
+        }
+    }
+
+    private fun calculateSpeed(value: Double, from: String, to: String): Double {
+        val metersPerSecond = when (from) {
+            "Kilometer per hour" -> value / 3.6
+            "Meter per second" -> value
+            "Mile per hour" -> value * 0.44704
+            else -> 0.0
+        }
+
+        return when (to) {
+            "Kilometer per hour" -> metersPerSecond * 3.6
+            "Meter per second" -> metersPerSecond
+            "Mile per hour" -> metersPerSecond * 2.23694
             else -> 0.0
         }
     }
