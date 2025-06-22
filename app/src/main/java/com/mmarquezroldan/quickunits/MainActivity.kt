@@ -44,6 +44,7 @@ class MainActivity : AppCompatActivity() {
                 val unitsArrayId = when (currentCategory) {
                     "Mass" -> R.array.mass_units
                     "Length" -> R.array.length_units
+                    "Temperature" -> R.array.temperature_units
                     else -> null
                 }
 
@@ -88,6 +89,9 @@ class MainActivity : AppCompatActivity() {
                 "Centimeter" -> "cm"
                 "Millimeter" -> "mm"
                 "Inch" -> "in"
+                "Celsius" -> "°C"
+                "Fahrenheit" -> "°F"
+                "Kelvin" -> "K"
                 else -> ""
             }
 
@@ -100,12 +104,16 @@ class MainActivity : AppCompatActivity() {
                 "Centimeter" -> "cm"
                 "Millimeter" -> "mm"
                 "Inch" -> "in"
+                "Celsius" -> "°C"
+                "Fahrenheit" -> "°F"
+                "Kelvin" -> "K"
                 else -> ""
             }
 
             val resultValue = when (currentCategory) {
                 "Mass" -> calculateMass(value, fromUnit, toUnit)
                 "Length" -> calculateLength(value, fromUnit, toUnit)
+                "Temperature" -> calculateTemperature(value, fromUnit, toUnit)
                 else -> 0.0
             }
 
@@ -145,6 +153,22 @@ class MainActivity : AppCompatActivity() {
             "Centimeter" -> meters * 100
             "Millimeter" -> meters * 1000
             "Inch" -> meters / 0.0254
+            else -> 0.0
+        }
+    }
+
+    private fun calculateTemperature(value: Double, from: String, to: String): Double {
+        val celsius = when (from) {
+            "Celsius" -> value
+            "Fahrenheit" -> (value - 32) * 5 / 9
+            "Kelvin" -> value - 273.15
+            else -> 0.0
+        }
+
+        return when (to) {
+            "Celsius" -> celsius
+            "Fahrenheit" -> celsius * 9 / 5 + 32
+            "Kelvin" -> celsius + 273.15
             else -> 0.0
         }
     }
