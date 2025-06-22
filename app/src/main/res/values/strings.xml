@@ -10,6 +10,7 @@
     <string-array name="category">
         <item>Mass</item>
         <item>Length</item>
+        <item>Temperature</item>
     </string-array>
     
     <string-array name="mass_units">
@@ -24,5 +25,11 @@
         <item>Centimeter</item>
         <item>Millimeter</item>
         <item>Inch</item>
+    </string-array>
+
+    <string-array name="temperature_units">
+        <item>Celsius</item>
+        <item>Fahrenheit</item>
+        <item>Kelvin</item>
     </string-array>
 </resources>
