@@ -12,6 +12,9 @@
         <item>Length</item>
         <item>Temperature</item>
         <item>Speed</item>
+        <item>Energy</item>
+        <item>Power</item>
+        <item>Pressure</item>
     </string-array>
     
     <string-array name="mass_units">
@@ -38,5 +41,31 @@
         <item>Kilometer per hour</item>
         <item>Meter per second</item>
         <item>Mile per hour</item>
+    </string-array>
+
+    <string-array name="energy_units">
+        <item>Joule</item>
+        <item>Kilowatt hour</item>
+        <item>Calorie</item>
+        <item>Kilocalorie</item>
+        <item>Watt-hour</item>
+        <item>BTU</item>
+        <item>Electronvolt</item>
+    </string-array>
+
+    <string-array name="power_units">
+        <item>Watt</item>
+        <item>Kilowatt</item>
+        <item>Horsepower</item>
+        <item>Megawatt</item>
+        <item>Gigawatt</item>
+    </string-array>
+
+    <string-array name="pressure_units">
+        <item>Pascal</item>
+        <item>Kilopascal</item>
+        <item>Bar</item>
+        <item>Atmosphere</item>
+        <item>Torr</item>
     </string-array>
 </resources>
