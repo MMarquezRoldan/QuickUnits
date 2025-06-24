@@ -5,6 +5,10 @@ import android.view.View
 import android.widget.*
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdSize
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,11 +19,30 @@ class MainActivity : AppCompatActivity() {
     private lateinit var result: TextView
     private lateinit var convert: Button
     private var currentCategory: String = "Mass"
+    private lateinit var adView: AdView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main)
+
+        MobileAds.initialize(this) {}
+
+        val adContainer = findViewById<LinearLayout>(R.id.lyAdsBanner)
+
+        adView = AdView(this).apply {
+            setAdSize(AdSize.BANNER)
+            adUnitId = "ca-app-pub-3940256099942544/6300978111" // ID de prueba de Google
+            layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            )
+        }
+
+        adContainer.addView(adView)
+
+        val adRequest = AdRequest.Builder().build()
+        adView.loadAd(adRequest)
 
         category = findViewById(R.id.category)
         mainUnit = findViewById(R.id.main_unit)
@@ -45,6 +68,9 @@ class MainActivity : AppCompatActivity() {
                     "Length" -> R.array.length_units
                     "Temperature" -> R.array.temperature_units
                     "Speed" -> R.array.speed_units
+                    "Energy" -> R.array.energy_units
+                    "Power" -> R.array.power_units
+                    "Pressure" -> R.array.pressure_units
                     else -> null
                 }
 
@@ -95,6 +121,23 @@ class MainActivity : AppCompatActivity() {
                 "Kilometer per hour" -> "km/h"
                 "Meter per second" -> "m/s"
                 "Mile per hour" -> "mph"
+                "Joule" -> "J"
+                "Kilowatt hour" -> "kWh"
+                "Calorie" -> "cal"
+                "Kilocalorie" -> "kcal"
+                "Watt-hour" -> "Wh"
+                "BTU" -> "BTU"
+                "Electronvolt" -> "eV"
+                "Watt" -> "W"
+                "Kilowatt" -> "kW"
+                "Horsepower" -> "hp"
+                "Megawatt" -> "MW"
+                "Gigawatt" -> "GW"
+                "Pascal" -> "Pa"
+                "Kilopascal" -> "kPa"
+                "Bar" -> "bar"
+                "Atmosphere" -> "atm"
+                "Torr" -> "torr"
                 else -> ""
             }
 
@@ -113,6 +156,23 @@ class MainActivity : AppCompatActivity() {
                 "Kilometer per hour" -> "km/h"
                 "Meter per second" -> "m/s"
                 "Mile per hour" -> "mph"
+                "Joule" -> "J"
+                "Kilowatt hour" -> "kWh"
+                "Calorie" -> "cal"
+                "Kilocalorie" -> "kcal"
+                "Watt-hour" -> "Wh"
+                "BTU" -> "BTU"
+                "Electronvolt" -> "eV"
+                "Watt" -> "W"
+                "Kilowatt" -> "kW"
+                "Horsepower" -> "hp"
+                "Megawatt" -> "MW"
+                "Gigawatt" -> "GW"
+                "Pascal" -> "Pa"
+                "Kilopascal" -> "kPa"
+                "Bar" -> "bar"
+                "Atmosphere" -> "atm"
+                "Torr" -> "torr"
                 else -> ""
             }
 
@@ -121,6 +181,9 @@ class MainActivity : AppCompatActivity() {
                 "Length" -> calculateLength(value, fromUnit, toUnit)
                 "Temperature" -> calculateTemperature(value, fromUnit, toUnit)
                 "Speed" -> calculateSpeed(value, fromUnit, toUnit)
+                "Energy" -> calculateEnergy(value, fromUnit, toUnit)
+                "Power" -> calculatePower(value, fromUnit, toUnit)
+                "Pressure" -> calculatePressure(value, fromUnit, toUnit)
                 else -> 0.0
             }
 
@@ -195,4 +258,69 @@ class MainActivity : AppCompatActivity() {
             else -> 0.0
         }
     }
+
+    private fun calculateEnergy(value: Double, from: String, to: String): Double {
+        val joules = when (from) {
+            "Joule" -> value
+            "Kilowatt hour" -> value * 3_600_000
+            "Calorie" -> value * 4.1868
+            "Kilocalorie" -> value * 4186.8
+            "Watt-hour" -> value * 3600
+            "BTU" -> value * 1055.056
+            "Electronvolt" -> value * 1.60218e-19
+            else -> 0.0
+        }
+
+        return when (to) {
+            "Joule" -> joules
+            "Kilowatt hour" -> joules / 3_600_000
+            "Calorie" -> joules / 4.1868
+            "Kilocalorie" -> joules / 4186.8
+            "Watt-hour" -> joules / 3600
+            "BTU" -> joules / 1055.056
+            "Electronvolt" -> joules / 1.60218e-19
+            else -> 0.0
+        }
+    }
+
+    private fun calculatePower(value: Double, from: String, to: String): Double {
+        val watts = when (from) {
+            "Watt" -> value
+            "Kilowatt" -> value * 1000
+            "Horsepower" -> value * 745.699872
+            "Megawatt" -> value * 1000000
+            "Gigawatt" -> value * 1000000000
+            else -> 0.0
+        }
+
+        return when (to) {
+            "Watt" -> watts
+            "Kilowatt" -> watts / 1000
+            "Horsepower" -> watts / 745.699872
+            "Megawatt" -> watts / 1000000
+            "Gigawatt" -> watts / 1000000000
+            else -> 0.0
+        }
+    }
+
+    private fun calculatePressure(value: Double, from: String, to: String): Double {
+        val pascales = when (from) {
+            "Pascal" -> value
+            "Kilopascal" -> value * 1000
+            "Bar" -> value * 100000
+            "Atmosphere" -> value * 101325
+            "Torr" -> value * 133.322
+            else -> 0.0
+        }
+
+        return when (to) {
+            "Pascal" -> pascales
+            "Kilopascal" -> pascales / 1000
+            "Bar" -> pascales / 100000
+            "Atmosphere" -> pascales / 101325
+            "Torr" -> pascales / 133.322
+            else -> 0.0
+        }
+    }
+
 }
