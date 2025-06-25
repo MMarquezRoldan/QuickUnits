@@ -71,6 +71,7 @@ class MainActivity : AppCompatActivity() {
                     "Energy" -> R.array.energy_units
                     "Power" -> R.array.power_units
                     "Pressure" -> R.array.pressure_units
+                    "Volume" -> R.array.volume_units
                     else -> null
                 }
 
@@ -138,6 +139,10 @@ class MainActivity : AppCompatActivity() {
                 "Bar" -> "bar"
                 "Atmosphere" -> "atm"
                 "Torr" -> "torr"
+                "Liter" -> "L"
+                "Milliliter" -> "mL"
+                "Gallon" -> "gal"
+                "Ounce (fluid)" -> "oz"
                 else -> ""
             }
 
@@ -173,6 +178,10 @@ class MainActivity : AppCompatActivity() {
                 "Bar" -> "bar"
                 "Atmosphere" -> "atm"
                 "Torr" -> "torr"
+                "Liter" -> "L"
+                "Milliliter" -> "mL"
+                "Gallon" -> "gal"
+                "Ounce (fluid)" -> "oz"
                 else -> ""
             }
 
@@ -184,6 +193,7 @@ class MainActivity : AppCompatActivity() {
                 "Energy" -> calculateEnergy(value, fromUnit, toUnit)
                 "Power" -> calculatePower(value, fromUnit, toUnit)
                 "Pressure" -> calculatePressure(value, fromUnit, toUnit)
+                "Volume" -> calculateVolume(value, fromUnit, toUnit)
                 else -> 0.0
             }
 
@@ -323,4 +333,21 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun calculateVolume(value: Double, from: String, to: String): Double {
+        val liters = when (from) {
+            "Liter" -> value
+            "Milliliter" -> value / 1000
+            "Gallon" -> value * 3.78541
+            "Ounce (fluid)" -> value * 0.0295735
+            else -> 0.0
+        }
+
+        return when (to) {
+            "Liter" -> liters
+            "Milliliter" -> liters * 1000
+            "Gallon" -> liters / 3.78541
+            "Ounce (fluid)" -> liters / 0.0295735
+            else -> 0.0
+        }
+    }
 }
